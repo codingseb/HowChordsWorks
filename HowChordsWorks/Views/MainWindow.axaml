@@ -1,6 +1,7 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:HowChordsWorks.ViewModels;assembly=HowChordsWorks"
+        xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -12,6 +13,13 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
 
+    <!--<Path Fill="Azure" 
+          Stroke="Black" 
+          StrokeThickness="1" 
+          Data="M0,10 A 50,50,0,0,1,50,10 l-5,50 A50,50,0,0,0,5,60z" />-->
+
+  </Grid>
+  
 </Window>

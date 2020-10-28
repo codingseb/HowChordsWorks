@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HowChordsWorks.Views.FifthWheelChordSector">
+  <v:PiePiece Radius="50"
+              InnerRadius="50"
+              RotationAngle="5"
+              Fill="Azure"
+              Stroke="Black"
+              StrokeThickness="1"/>
+</UserControl>
