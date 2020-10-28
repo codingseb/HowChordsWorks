@@ -15,10 +15,127 @@
 
   <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
 
-    <!--<Path Fill="Azure" 
-          Stroke="Black" 
-          StrokeThickness="1" 
-          Data="M0,10 A 50,50,0,0,1,50,10 l-5,50 A50,50,0,0,0,5,60z" />-->
+    <Ellipse Stroke="Blue"
+             StrokeThickness="3"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center"
+             Width="400"
+             Height="400" />
+
+
+
+    <v:FifthWheelChordSector Margin="0,0,0,250"
+                             VerticalAlignment="Center"
+                             HorizontalContentAlignment="Center"/>
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="30" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="60" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="90" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="120" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="150" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="180" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="210" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="240" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="270" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="300" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+    
+    <Grid>
+      <Grid.RenderTransform>
+        <RotateTransform Angle="330" />
+      </Grid.RenderTransform>
+      
+      <v:FifthWheelChordSector Margin="0,0,0,250"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
+    </Grid>
+
 
   </Grid>
   

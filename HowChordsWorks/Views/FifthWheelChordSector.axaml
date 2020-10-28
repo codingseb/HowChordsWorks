@@ -3,12 +3,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
+             xmlns:c="clr-namespace:HowChordsWorks.Converters;assembly=HowChordsWorks"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HowChordsWorks.Views.FifthWheelChordSector">
-  <v:PiePiece Radius="50"
-              InnerRadius="50"
-              RotationAngle="5"
-              Fill="Azure"
-              Stroke="Black"
-              StrokeThickness="1"/>
+  <UserControl.Resources>
+    <c:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+  </UserControl.Resources>
+  <Grid>
+
+    <v:PiePiece Radius="150"
+                InnerRadius="100"
+                Fill="{Binding IsPointerOver, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToBrushConverter}}"
+                Stroke="Black"
+                StrokeThickness="1"/>
+    <TextBlock Text="C"
+               IsHitTestVisible="False"
+               FontSize="20"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+  </Grid>
 </UserControl>
