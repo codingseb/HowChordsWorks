@@ -7,16 +7,22 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HowChordsWorks.Views.FifthWheelChordSector">
   <UserControl.Resources>
-    <c:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+    <c:FifthChordsFillColorConverter x:Key="FifthChordsFillColorConverter" />
   </UserControl.Resources>
   <Grid>
 
-    <v:PiePiece Radius="150"
-                InnerRadius="100"
-                Fill="{Binding IsPointerOver, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToBrushConverter}}"
+    <v:PiePiece Radius="{Binding Radius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
+                InnerRadius="{Binding InnerRadius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
                 Stroke="Black"
-                StrokeThickness="1"/>
-    <TextBlock Text="C"
+                StrokeThickness="1">
+      <v:PiePiece.Fill>
+        <MultiBinding Converter="{StaticResource FifthChordsFillColorConverter}">
+          <Binding Path="Index" />
+          <Binding Path="IsPointerOver" RelativeSource="{RelativeSource Self}" />
+        </MultiBinding>
+      </v:PiePiece.Fill>
+    </v:PiePiece>
+    <TextBlock Text="{Binding Name}"
                IsHitTestVisible="False"
                FontSize="20"
                VerticalAlignment="Center"

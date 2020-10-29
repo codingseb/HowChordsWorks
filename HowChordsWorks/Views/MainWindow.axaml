@@ -4,139 +4,72 @@
         xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" SizeToContent="WidthAndHeight"
         x:Class="HowChordsWorks.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="How Chords Works">
+  <Window.Resources>
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+  </Window.Resources>
 
-  <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
 
-    <Ellipse Stroke="Blue"
-             StrokeThickness="3"
-             VerticalAlignment="Center"
-             HorizontalAlignment="Center"
-             Width="400"
-             Height="400" />
+  <DockPanel>
 
+    <StackPanel DockPanel.Dock="Top" Margin="5">
+      <CheckBox Content="#/b" IsChecked="{Binding UseSharpsNotes}"/>
+    </StackPanel>
 
+    <Grid x:Name="ChordsWheelContainer" VerticalAlignment="Center" HorizontalAlignment="Center" >
 
-    <v:FifthWheelChordSector Margin="0,0,0,250"
-                             VerticalAlignment="Center"
-                             HorizontalContentAlignment="Center"/>
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="30" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="60" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="90" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="120" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
+      <ItemsControl Items="{Binding MinorFifths}" Width="300" Height="300">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <Grid />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="{Binding Angle}" />
+              </Grid.RenderTransform>
 
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="150" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="180" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="210" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="240" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="270" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="300" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
-    
-    <Grid>
-      <Grid.RenderTransform>
-        <RotateTransform Angle="330" />
-      </Grid.RenderTransform>
-      
-      <v:FifthWheelChordSector Margin="0,0,0,250"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Center"/>
-    </Grid>
+              <v:FifthWheelChordSector Radius="150"
+                                       InnerRadius="100"
+                                       VerticalAlignment="Top"
+                                       HorizontalContentAlignment="Center"/>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <ItemsControl Items="{Binding MajorFifths}" Width="200" Height="200">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <Grid />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="{Binding Angle}" />
+              </Grid.RenderTransform>
+
+              <v:FifthWheelChordSector Radius="100"
+                                       InnerRadius="50"
+                                       VerticalAlignment="Top"
+                                       HorizontalContentAlignment="Center"/>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
 
 
-  </Grid>
-  
+    </Grid>
+  </DockPanel>
+
 </Window>
