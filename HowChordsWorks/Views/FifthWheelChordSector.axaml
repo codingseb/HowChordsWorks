@@ -15,7 +15,7 @@
     <v:PiePiece Radius="{Binding Radius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
                 InnerRadius="{Binding InnerRadius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
                 Angle="30"
-                Stroke="Black"
+                Stroke="#111111"
                 StrokeThickness="1">
       <v:PiePiece.Fill>
         <MultiBinding Converter="{StaticResource FifthChordsFillColorMultiConverter}">

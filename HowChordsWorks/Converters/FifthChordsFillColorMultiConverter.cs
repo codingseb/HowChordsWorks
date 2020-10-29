@@ -21,7 +21,7 @@ namespace HowChordsWorks.Converters
                 {
                     hue += (Math.Abs(hue) / 360 + 1) * 360;
                 }
-                HSL hSL = new HSL(hue % 360, 1f, (bool)values[1] ? 0.8f : 0.5f);
+                HSL hSL = new HSL(hue % 360, 0.75f, (bool)values[1] ? 0.75f : 0.6f);
                 RGB rGB = hSL.ToRGB();
 
                 return new SolidColorBrush(new Color(255, rGB.R, rGB.G, rGB.B));

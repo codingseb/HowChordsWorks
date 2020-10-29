@@ -2,6 +2,10 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Coding Seb</Authors>
+    <Company />
+    <Product />
+    <Description>A small AvaloniaUI project to understand how music chords works.</Description>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
