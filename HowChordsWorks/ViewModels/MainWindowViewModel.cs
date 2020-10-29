@@ -39,7 +39,7 @@ namespace HowChordsWorks.ViewModels
             }
 
             this.WhenAnyValue(x => x.UseSharpsNotes)
-                .Subscribe(onNext: _ => this.RefreshChordsNames());
+                .Subscribe(onNext: _ => RefreshChordsNames());
         }
 
         public void RefreshChordsNames()

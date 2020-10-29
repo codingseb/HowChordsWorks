@@ -1,6 +1,7 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:HowChordsWorks.ViewModels;assembly=HowChordsWorks"
+        xmlns:m="clr-namespace:HowChordsWorks.Models;assembly=HowChordsWorks"
         xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,23 +9,28 @@
         x:Class="HowChordsWorks.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="How Chords Works">
-  <Window.Resources>
-
-  </Window.Resources>
-
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
 
   <DockPanel>
 
-    <StackPanel DockPanel.Dock="Top" Margin="5">
+    <StackPanel DockPanel.Dock="Top" 
+                Margin="10"
+                Orientation="Horizontal">
       <CheckBox Content="#/b" IsChecked="{Binding UseSharpsNotes}"/>
+
+      <TextBlock Text="Hue Shift : "
+                 VerticalAlignment="Center"
+                 Margin="20,0,0,0"
+                 />
+      <NumericUpDown 
+                     Value="{Binding ColorHueShift, Source={x:Static m:Config.Instance}}"/>
     </StackPanel>
 
     <Grid x:Name="ChordsWheelContainer" VerticalAlignment="Center" HorizontalAlignment="Center" >
 
-      <ItemsControl Items="{Binding MinorFifths}" Width="300" Height="300">
+      <ItemsControl Items="{Binding MinorFifths}" Width="600" Height="600">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <Grid />
@@ -37,7 +43,29 @@
                 <RotateTransform Angle="{Binding Angle}" />
               </Grid.RenderTransform>
 
-              <v:FifthWheelChordSector Radius="150"
+              <v:FifthWheelChordSector Radius="300"
+                                       InnerRadius="200"
+                                       VerticalAlignment="Top"
+                                       HorizontalContentAlignment="Center"/>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <ItemsControl Items="{Binding MajorFifths}" Width="400" Height="400">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <Grid />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="{Binding Angle}" />
+              </Grid.RenderTransform>
+
+              <v:FifthWheelChordSector Radius="200"
                                        InnerRadius="100"
                                        VerticalAlignment="Top"
                                        HorizontalContentAlignment="Center"/>
@@ -46,28 +74,7 @@
         </ItemsControl.ItemTemplate>
       </ItemsControl>
 
-      <ItemsControl Items="{Binding MajorFifths}" Width="200" Height="200">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <Grid />
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-          <DataTemplate>
-            <Grid>
-              <Grid.RenderTransform>
-                <RotateTransform Angle="{Binding Angle}" />
-              </Grid.RenderTransform>
-
-              <v:FifthWheelChordSector Radius="100"
-                                       InnerRadius="50"
-                                       VerticalAlignment="Top"
-                                       HorizontalContentAlignment="Center"/>
-            </Grid>
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
-
+      
 
     </Grid>
   </DockPanel>

@@ -10,13 +10,18 @@ namespace HowChordsWorks.Converters
     /// <summary>
     /// -- Describe here to what is this class used for. (What is it's purpose) --
     /// </summary>
-    public class FifthChordsFillColorConverter : IMultiValueConverter
+    public class FifthChordsFillColorMultiConverter : IMultiValueConverter
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                HSL hSL = new HSL((int)values[0] * 30, 1f, (bool)values[1] ? 0.8f : 0.5f);
+                int hue = ((int)values[0] * 30) + (int)values[2];
+                if(hue < 0)
+                {
+                    hue += (Math.Abs(hue) / 360 + 1) * 360;
+                }
+                HSL hSL = new HSL(hue % 360, 1f, (bool)values[1] ? 0.8f : 0.5f);
                 RGB rGB = hSL.ToRGB();
 
                 return new SolidColorBrush(new Color(255, rGB.R, rGB.G, rGB.B));

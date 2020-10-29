@@ -3,28 +3,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="clr-namespace:HowChordsWorks.Views;assembly=HowChordsWorks"
+             xmlns:m="clr-namespace:HowChordsWorks.Models;assembly=HowChordsWorks"
              xmlns:c="clr-namespace:HowChordsWorks.Converters;assembly=HowChordsWorks"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HowChordsWorks.Views.FifthWheelChordSector">
   <UserControl.Resources>
-    <c:FifthChordsFillColorConverter x:Key="FifthChordsFillColorConverter" />
+    <c:FifthChordsFillColorMultiConverter x:Key="FifthChordsFillColorMultiConverter" />
   </UserControl.Resources>
   <Grid>
 
     <v:PiePiece Radius="{Binding Radius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
                 InnerRadius="{Binding InnerRadius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
+                Angle="30"
                 Stroke="Black"
                 StrokeThickness="1">
       <v:PiePiece.Fill>
-        <MultiBinding Converter="{StaticResource FifthChordsFillColorConverter}">
+        <MultiBinding Converter="{StaticResource FifthChordsFillColorMultiConverter}">
           <Binding Path="Index" />
           <Binding Path="IsPointerOver" RelativeSource="{RelativeSource Self}" />
+          <Binding Path="ColorHueShift" Source="{x:Static m:Config.Instance}" />
         </MultiBinding>
       </v:PiePiece.Fill>
     </v:PiePiece>
     <TextBlock Text="{Binding Name}"
                IsHitTestVisible="False"
-               FontSize="20"
+               FontSize="30"
+               FontWeight="DemiBold"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
   </Grid>

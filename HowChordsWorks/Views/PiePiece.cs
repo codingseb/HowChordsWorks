@@ -9,6 +9,15 @@ namespace HowChordsWorks.Views
     {
         #region styled properties
 
+        public static readonly StyledProperty<double> AngleProperty =
+            AvaloniaProperty.Register<PiePiece, double>(nameof(Angle));
+
+        public double Angle
+        {
+            get { return GetValue(AngleProperty); }
+            set { SetValue(AngleProperty, value); }
+        }
+
         public static readonly StyledProperty<double> RadiusProperty =
             AvaloniaProperty.Register<PiePiece, double>(nameof(Radius));
 
@@ -46,13 +55,15 @@ namespace HowChordsWorks.Views
         /// </summary>
         private void DrawGeometry(StreamGeometryContext context)
         {
-            double outerWidth = (Radius * Math.Sin(ConvertToRadians(15)));
-            double innerWidth = (InnerRadius * Math.Sin(ConvertToRadians(15)));
+            double halfAngle = Angle / 2;
+
+            double outerWidth = Radius * Math.Sin(ConvertToRadians(halfAngle));
+            double innerWidth = InnerRadius * Math.Sin(ConvertToRadians(halfAngle));
             double innerLeft = outerWidth - innerWidth;
             double innerRight = outerWidth + innerWidth;
-            double outerH = (Radius * Math.Cos(ConvertToRadians(15)));
+            double outerH = Radius * Math.Cos(ConvertToRadians(halfAngle));
             double beginY =  Radius - outerH + StrokeThickness;
-            double h = outerH - (InnerRadius * Math.Cos(ConvertToRadians(15))) + beginY;
+            double h = outerH - (InnerRadius * Math.Cos(ConvertToRadians(halfAngle))) + beginY;
 
             context.BeginFigure(new Point(0, beginY), true);
             context.ArcTo(new Point(outerWidth * 2, beginY), new Size(Radius, Radius), 0, false, SweepDirection.Clockwise);
