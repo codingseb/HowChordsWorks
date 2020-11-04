@@ -5,13 +5,14 @@ using System.Globalization;
 
 namespace HowChordsWorks.Converters
 {
-    public class MinusValueConverter : MarkupExtension, IValueConverter
+    public class ChainingConverter : MarkupExtension, IValueConverter
     {
+        public IValueConverter Converter1 { get; set; }
+        public IValueConverter Converter2 { get; set; }
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            dynamic dValue = value;
-
-            return -dValue;
+            return Converter2.Convert(Converter1.Convert(value, targetType, parameter, culture), targetType, parameter, culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

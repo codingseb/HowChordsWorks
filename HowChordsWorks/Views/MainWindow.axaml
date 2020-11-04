@@ -6,32 +6,29 @@
         xmlns:c="clr-namespace:HowChordsWorks.Converters;assembly=HowChordsWorks"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" SizeToContent="WidthAndHeight"
+        mc:Ignorable="d" MinWidth="300" Width="600" MinHeight="300" Height="600"
         x:Class="HowChordsWorks.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
+        
         Title="How Chords Works">
 
-  <Window.Resources>
-    <c:MinusValueConverter x:Key="MinusValueConverter" />
-  </Window.Resources>
-  
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
 
   <DockPanel>
 
-    <StackPanel DockPanel.Dock="Top" 
+    <StackPanel DockPanel.Dock="Top"
                 Margin="10"
                 Orientation="Horizontal">
       <CheckBox Content="#/b" IsChecked="{Binding UseSharpsNotes}"/>
 
-      <TextBlock Text="Hue Shift : "
+      <TextBlock Text="Hue Shift : "     
                  VerticalAlignment="Center"
                  Margin="20,0,0,0"
                  />
       <NumericUpDown Value="{Binding ColorHueShift, Source={x:Static m:Config.Instance}}"/>
-      
+
       <TextBlock Text="Base Chord : "
                  VerticalAlignment="Center"
                  Margin="20,0,0,0"
@@ -39,123 +36,145 @@
       <NumericUpDown x:Name="BaseChord" Increment="30"/>
     </StackPanel>
 
-    <Grid x:Name="ChordsWheelContainer" VerticalAlignment="Center" HorizontalAlignment="Center" >
-
+    <Grid  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+      <Rectangle x:Name="RectangleChordsWheelDimension" Stroke="Red" StrokeThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
       <Grid>
-        <Grid.RenderTransform>
-          <RotateTransform Angle="{Binding Value, ElementName=BaseChord, Converter={StaticResource MinusValueConverter}}" />
-        </Grid.RenderTransform>
-        <ItemsControl Items="{Binding MinorFifths}" Width="600" Height="600">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <Grid />
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-          <ItemsControl.ItemTemplate>
-            <DataTemplate>
-              <Grid>
-                <Grid.RenderTransform>
-                  <RotateTransform Angle="{Binding Angle}" />
-                </Grid.RenderTransform>
+        <Rectangle x:Name="SquareChordsWheelDimension" Stroke="Blue" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
+          <Rectangle.Width>
+            <MultiBinding Converter="{c:MinValueMultiConverter}">
+              <Binding Path="#RectangleChordsWheelDimension.Bounds.Width"   />
+              <Binding Path="#RectangleChordsWheelDimension.Bounds.Height" />
+            </MultiBinding>
+          </Rectangle.Width>
+          <Rectangle.Height>
+            <MultiBinding Converter="{c:MinValueMultiConverter}">
+              <Binding Path="#RectangleChordsWheelDimension.Bounds.Width" />
+              <Binding Path="#RectangleChordsWheelDimension.Bounds.Height" />
+            </MultiBinding>
+          </Rectangle.Height>
+        </Rectangle>
+        <Grid>
+          <Grid.RenderTransform>
+            <RotateTransform Angle="{Binding Value, ElementName=BaseChord, Converter={c:MinusValueConverter}}" />
+          </Grid.RenderTransform>
+          <ItemsControl Items="{Binding MinorFifths}"
+                        Width="{Binding #SquareChordsWheelDimension.Bounds.Width}"
+                        Height="{Binding #SquareChordsWheelDimension.Bounds.Height}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <Grid />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                  </Grid.RenderTransform>
 
-                <v:FifthWheelChordSector Radius="300"
-                                         InnerRadius="200"
-                                         VerticalAlignment="Top"
-                                         HorizontalContentAlignment="Center"/>
-              </Grid>
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                  <v:FifthWheelChordSector Radius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=2}}"
+                                           InnerRadius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=3}}"
+                                           VerticalAlignment="Top"
+                                           HorizontalAlignment="Center"/>
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
 
-        <ItemsControl Items="{Binding MajorFifths}" Width="400" Height="400">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <Grid />
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-          <ItemsControl.ItemTemplate>
-            <DataTemplate>
-              <Grid>
-                <Grid.RenderTransform>
-                  <RotateTransform Angle="{Binding Angle}" />
-                </Grid.RenderTransform>
+          <ItemsControl Items="{Binding MajorFifths}" 
+                        Width="{Binding #SquareChordsWheelDimension.Bounds.Width, Converter={c:DoubleFactorAndOffsetConverter Divider=1.5}}" 
+                        Height="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=1.5}}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <Grid />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid>
+                  <Grid.RenderTransform>
+                    <RotateTransform Angle="{Binding Angle}" />
+                  </Grid.RenderTransform>
 
-                <v:FifthWheelChordSector Radius="200"
-                                         InnerRadius="100"
-                                         VerticalAlignment="Top"
-                                         HorizontalContentAlignment="Center"/>
-              </Grid>
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
-      </Grid>
+                  <v:FifthWheelChordSector Radius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=3}}"
+                                           InnerRadius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=6}}"
+                                           VerticalAlignment="Top"
+                                           HorizontalContentAlignment="Center"/>
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
 
-      <Grid IsHitTestVisible="False">
-        <Grid Height="234">
-          <TextBlock Text="I"
-                     FontWeight="DemiBold"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Center"/>
-          <Grid>
-            <Grid.RenderTransform>
-              <RotateTransform Angle="330" />
-            </Grid.RenderTransform>
-            <TextBlock Text="IV"
-               FontWeight="DemiBold"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Center"/>
-          </Grid>
-          <Grid>
-            <Grid.RenderTransform>
-              <RotateTransform Angle="30" />
-            </Grid.RenderTransform>
-            <TextBlock Text="V"
-               FontWeight="DemiBold"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Center"/>
-          </Grid>
-        </Grid>
-      
-        <Grid Height="434">
-          <TextBlock Text="vi"
-                     FontWeight="DemiBold"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Center"/>
-          <Grid>
-            <Grid.RenderTransform>
-              <RotateTransform Angle="330" />
-            </Grid.RenderTransform>
-            <TextBlock Text="ii"
-               FontWeight="DemiBold"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Center"/>
-          </Grid>
-          <Grid>
-            <Grid.RenderTransform>
-              <RotateTransform Angle="30" />
-            </Grid.RenderTransform>
-            <TextBlock Text="iii"
-               FontWeight="DemiBold"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Center"/>
-          </Grid>
-        </Grid>
-        
-        <Grid Height="200">
-          <TextBlock Text="▲"
-                     FontWeight="DemiBold"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Center"/>
+
         </Grid>
 
-        <Grid Height="604" Width="600" VerticalAlignment="Center" HorizontalAlignment="Center" >
-          <v:PiePiece Stroke="Black"
-                      Radius="300"
-                      InnerRadius="100"
-                      VerticalAlignment="Top"
-                      HorizontalAlignment="Center"
-                      StrokeThickness="4"
-                      Angle="90"/>
+        <Grid IsHitTestVisible="False">
+          <Grid Height="234">
+            <TextBlock Text="I"
+                       FontWeight="DemiBold"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="330" />
+              </Grid.RenderTransform>
+              <TextBlock Text="IV"
+                 FontWeight="DemiBold"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="30" />
+              </Grid.RenderTransform>
+              <TextBlock Text="V"
+                 FontWeight="DemiBold"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center"/>
+            </Grid>
+          </Grid>
+
+          <Grid Height="434">
+            <TextBlock Text="vi"
+                       FontWeight="DemiBold"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="330" />
+              </Grid.RenderTransform>
+              <TextBlock Text="ii"
+                 FontWeight="DemiBold"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid>
+              <Grid.RenderTransform>
+                <RotateTransform Angle="30" />
+              </Grid.RenderTransform>
+              <TextBlock Text="iii"
+                 FontWeight="DemiBold"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center"/>
+            </Grid>
+          </Grid>
+
+          <Grid Height="200">
+            <TextBlock Text="▲"
+                       FontWeight="DemiBold"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+          </Grid>
+
+          <Grid Height="604" Width="600" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <v:PiePiece Stroke="Black"
+                        Radius="300"
+                        InnerRadius="100"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        StrokeThickness="4"
+                        Angle="90"/>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

@@ -37,6 +37,11 @@ namespace HowChordsWorks.Views
         }
         #endregion
 
+        public PiePiece()
+        {
+            AffectsGeometry<PiePiece>(RadiusProperty, InnerRadiusProperty);
+        }
+
         protected override Geometry CreateDefiningGeometry()
         {
             // Create a StreamGeometry for describing the shape

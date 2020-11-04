@@ -1,17 +1,17 @@
 ﻿using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace HowChordsWorks.Converters
 {
-    public class MinusValueConverter : MarkupExtension, IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public class MinValueMultiConverter : MarkupExtension, IMultiValueConverter
+    {   
+        public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
-            dynamic dValue = value;
-
-            return -dValue;
+            return values.Select(o => (double)o).Min();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

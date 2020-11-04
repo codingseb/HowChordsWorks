@@ -1,4 +1,5 @@
 ﻿using Avalonia.Data.Converters;
+using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using HowChordsWorks.Utils;
 using System;
@@ -10,7 +11,7 @@ namespace HowChordsWorks.Converters
     /// <summary>
     /// -- Describe here to what is this class used for. (What is it's purpose) --
     /// </summary>
-    public class FifthChordsFillColorMultiConverter : IMultiValueConverter
+    public class FifthChordsFillColorMultiConverter : MarkupExtension, IMultiValueConverter
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -33,5 +34,10 @@ namespace HowChordsWorks.Converters
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
     }
 }

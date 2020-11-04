@@ -7,9 +7,6 @@
              xmlns:c="clr-namespace:HowChordsWorks.Converters;assembly=HowChordsWorks"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HowChordsWorks.Views.FifthWheelChordSector">
-  <UserControl.Resources>
-    <c:FifthChordsFillColorMultiConverter x:Key="FifthChordsFillColorMultiConverter" />
-  </UserControl.Resources>
   <Grid>
 
     <v:PiePiece Radius="{Binding Radius, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
@@ -18,7 +15,7 @@
                 Stroke="#111111"
                 StrokeThickness="1">
       <v:PiePiece.Fill>
-        <MultiBinding Converter="{StaticResource FifthChordsFillColorMultiConverter}">
+        <MultiBinding Converter="{c:FifthChordsFillColorMultiConverter}">
           <Binding Path="Index" />
           <Binding Path="IsPointerOver" RelativeSource="{RelativeSource Self}" />
           <Binding Path="ColorHueShift" Source="{x:Static m:Config.Instance}" />

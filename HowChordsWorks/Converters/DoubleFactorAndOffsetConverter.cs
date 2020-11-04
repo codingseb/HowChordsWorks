@@ -5,18 +5,22 @@ using System.Globalization;
 
 namespace HowChordsWorks.Converters
 {
-    public class MinusValueConverter : MarkupExtension, IValueConverter
+    public class DoubleFactorAndOffsetConverter : MarkupExtension, IValueConverter
     {
+        public double Offset { get; set; }
+
+        public double Factor { get; set; } = 1;
+
+        public double Divider { get; set; } = 1;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            dynamic dValue = value;
-
-            return -dValue;
+            return (double)value * Factor / Divider + Offset;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return ((double)value - Offset) / Offset * Divider;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
