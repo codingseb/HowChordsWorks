@@ -74,6 +74,7 @@
 
                   <v:FifthWheelChordSector Radius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=2}}"
                                            InnerRadius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=3}}"
+                                           FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=20, Offset=1}}"
                                            VerticalAlignment="Top"
                                            HorizontalAlignment="Center"/>
                 </Grid>
@@ -98,6 +99,7 @@
 
                   <v:FifthWheelChordSector Radius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=3}}"
                                            InnerRadius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=6}}"
+                                           FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=20, Offset=1}}"
                                            VerticalAlignment="Top"
                                            HorizontalContentAlignment="Center"/>
                 </Grid>
@@ -109,9 +111,10 @@
         </Grid>
 
         <Grid IsHitTestVisible="False">
-          <Grid Height="234">
+          <Grid Height="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=2.6}}">
             <TextBlock Text="I"
                        FontWeight="DemiBold"
+                       FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"/>
             <Grid>
@@ -120,6 +123,7 @@
               </Grid.RenderTransform>
               <TextBlock Text="IV"
                  FontWeight="DemiBold"
+                 FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"        
                  VerticalAlignment="Top"
                  HorizontalAlignment="Center"/>
             </Grid>
@@ -129,14 +133,16 @@
               </Grid.RenderTransform>
               <TextBlock Text="V"
                  FontWeight="DemiBold"
+                 FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"        
                  VerticalAlignment="Top"
                  HorizontalAlignment="Center"/>
             </Grid>
           </Grid>
 
-          <Grid Height="434">
+          <Grid Height="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=1.4}}">
             <TextBlock Text="vi"
                        FontWeight="DemiBold"
+                       FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"/>
             <Grid>
@@ -145,6 +151,7 @@
               </Grid.RenderTransform>
               <TextBlock Text="ii"
                  FontWeight="DemiBold"
+                 FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Center"/>
             </Grid>
@@ -154,22 +161,28 @@
               </Grid.RenderTransform>
               <TextBlock Text="iii"
                  FontWeight="DemiBold"
+                 FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=60, Offset=1}}"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Center"/>
             </Grid>
           </Grid>
 
-          <Grid Height="200">
+          <Grid Height="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=3}}">
             <TextBlock Text="▲"
                        FontWeight="DemiBold"
+                       FontSize="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=50, Offset=1}}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"/>
           </Grid>
 
-          <Grid Height="604" Width="600" VerticalAlignment="Center" HorizontalAlignment="Center" >
+          <Grid Width="{Binding #SquareChordsWheelDimension.Bounds.Width}"
+                Height="{Binding #SquareChordsWheelDimension.Bounds.Height}" 
+                Margin="0,-4,0,0"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" >
             <v:PiePiece Stroke="Black"
-                        Radius="300"
-                        InnerRadius="100"
+                        Radius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=2}}"
+                        InnerRadius="{Binding #SquareChordsWheelDimension.Bounds.Height, Converter={c:DoubleFactorAndOffsetConverter Divider=6}}"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Center"
                         StrokeThickness="4"

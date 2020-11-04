@@ -24,8 +24,8 @@
     </v:PiePiece>
     <TextBlock Text="{Binding Name}"
                IsHitTestVisible="False"
-               FontSize="30"
                FontWeight="DemiBold"
+               FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType={x:Type v:FifthWheelChordSector}}}"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
   </Grid>

@@ -39,7 +39,7 @@ namespace HowChordsWorks.Views
 
         public PiePiece()
         {
-            AffectsGeometry<PiePiece>(RadiusProperty, InnerRadiusProperty);
+            AffectsGeometry<PiePiece>(RadiusProperty, InnerRadiusProperty, AngleProperty);
         }
 
         protected override Geometry CreateDefiningGeometry()
