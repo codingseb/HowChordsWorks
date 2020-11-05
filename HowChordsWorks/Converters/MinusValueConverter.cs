@@ -1,11 +1,10 @@
 ﻿using Avalonia.Data.Converters;
-using Avalonia.Markup.Xaml;
 using System;
 using System.Globalization;
 
 namespace HowChordsWorks.Converters
 {
-    public class MinusValueConverter : MarkupExtension, IValueConverter
+    public class MinusValueConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -16,10 +15,12 @@ namespace HowChordsWorks.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            dynamic dValue = value;
+
+            return -dValue;
         }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public object ProvideValue()
         {
             return this;
         }

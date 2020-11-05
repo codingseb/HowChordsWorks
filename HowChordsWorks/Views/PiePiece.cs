@@ -78,17 +78,6 @@ namespace HowChordsWorks.Views
             context.EndFigure(true);
         }
 
-        private static Point ToCartesianPoint(double angle, double radius)
-        {
-            // convert to radians
-            double angleRad = ConvertToRadians((angle + 360) % 360);
-
-            double x = radius * Math.Cos(angleRad);
-            double y = radius * Math.Sin(angleRad);
-
-            return new Point(x, y);
-        }
-
         private static double ConvertToRadians(double angle)
         {
             return Math.PI / 180 * angle;

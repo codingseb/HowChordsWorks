@@ -1,11 +1,10 @@
 ﻿using Avalonia.Data.Converters;
-using Avalonia.Markup.Xaml;
 using System;
 using System.Globalization;
 
 namespace HowChordsWorks.Converters
 {
-    public class DoubleFactorAndOffsetConverter : MarkupExtension, IValueConverter
+    public class DoubleFactorAndOffsetConverter : IValueConverter
     {
         public double Offset { get; set; }
 
@@ -15,7 +14,7 @@ namespace HowChordsWorks.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (double)value * Factor / Divider + Offset;
+            return ((double)value * Factor / Divider) + Offset;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -23,7 +22,7 @@ namespace HowChordsWorks.Converters
             return ((double)value - Offset) / Offset * Divider;
         }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public object ProvideValue()
         {
             return this;
         }

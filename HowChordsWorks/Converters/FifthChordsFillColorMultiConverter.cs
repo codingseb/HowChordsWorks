@@ -1,5 +1,4 @@
 ﻿using Avalonia.Data.Converters;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using HowChordsWorks.Utils;
 using System;
@@ -11,7 +10,7 @@ namespace HowChordsWorks.Converters
     /// <summary>
     /// -- Describe here to what is this class used for. (What is it's purpose) --
     /// </summary>
-    public class FifthChordsFillColorMultiConverter : MarkupExtension, IMultiValueConverter
+    public class FifthChordsFillColorMultiConverter : IMultiValueConverter
     {
         public object Convert(IList<object> values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,7 +19,7 @@ namespace HowChordsWorks.Converters
                 int hue = ((int)values[0] * 30) + (int)values[2];
                 if(hue < 0)
                 {
-                    hue += (Math.Abs(hue) / 360 + 1) * 360;
+                    hue += ((Math.Abs(hue) / 360) + 1) * 360;
                 }
                 HSL hSL = new HSL(hue % 360, 0.75f, (bool)values[1] ? 0.75f : 0.6f);
                 RGB rGB = hSL.ToRGB();
@@ -35,7 +34,7 @@ namespace HowChordsWorks.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public object ProvideValue()
         {
             return this;
         }

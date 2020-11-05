@@ -1,11 +1,10 @@
 ﻿using Avalonia.Data.Converters;
-using Avalonia.Markup.Xaml;
 using System;
 using System.Globalization;
 
 namespace HowChordsWorks.Converters
 {
-    public class ChainingConverter : MarkupExtension, IValueConverter
+    public class ChainingConverter : IValueConverter
     {
         public IValueConverter Converter1 { get; set; }
         public IValueConverter Converter2 { get; set; }
@@ -17,10 +16,10 @@ namespace HowChordsWorks.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return Converter1.ConvertBack(Converter2.ConvertBack(value, targetType, parameter, culture), targetType, parameter, culture);
         }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        public object ProvideValue()
         {
             return this;
         }
